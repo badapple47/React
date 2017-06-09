@@ -17,5 +17,3 @@ class SearchBar extends Component {
 }
 
 export default SearchBar;
-
-//test git version
