@@ -4,7 +4,7 @@ import React from 'react';
 
 const VideoDetail = (props) => {
 const video = props.video
-
+//add if เพราะบางทีมันส่งค่าไม่ทัน มันจะลงไปทำข้างล่างทำให้พัง เลยเช็คก่อนถ้าไม่ทันให้รอมันก่อน
   if(!video){
     return <div>Loading...</div>;
   }
