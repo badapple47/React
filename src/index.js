@@ -5,6 +5,7 @@ import YTSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
+import _ from 'lodash';
 
 
 const API_KEY = 'AIzaSyBknMoPG_SzSjYdaQ6bYupb-ITn-eCjumo';
@@ -23,7 +24,7 @@ class  App extends Component {
       selectedVideo: null
     };
 
-    this.videoSearch('surfboards');
+    this.videoSearch('Martin');
   }
 
   videoSearch(term){
@@ -36,9 +37,13 @@ class  App extends Component {
   }
 
 render(){
+  //videoSearch อันล่างนี่แค่ทำให้มันรันได้หนึ่งครั้งในทุก 300 mili sec
+  const videoSearch = _.debounce((term) => {this.videoSearch(term)} , 300);
+
   return (
+    // ด้านหลัง SearchBar ตรง onSearchTermChange มันคือProperties
     <div>
-    <SearchBar onSearchTermChange={term => this.videoSearch(term)}/>
+    <SearchBar onSearchTermChange={videoSearch}/>
     <VideoDetail video={this.state.selectedVideo} />
     <VideoList
         onVideoSelect={selectedVideo => this.setState({selectedVideo})}
